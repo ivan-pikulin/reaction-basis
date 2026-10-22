@@ -54,6 +54,12 @@ jobs:
           name: distributions
           path: dist/
           if-no-files-found: error
+      - uses: actions/download-artifact@v8.0.2
+        with:
+          name: distributions
+          path: downloaded-dist/
+      - run: uv run --isolated --no-project --with downloaded-dist/*.whl tests/smoke_test.py
+      - run: uv run --isolated --no-project --with downloaded-dist/*.tar.gz tests/smoke_test.py
   publish:
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
     needs: build
