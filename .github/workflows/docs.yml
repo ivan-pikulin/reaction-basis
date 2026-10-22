@@ -10,19 +10,19 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: astral-sh/setup-uv@v6
+      - uses: actions/checkout@v7.0.1
+      - uses: astral-sh/setup-uv@v10.3.2
         with:
           python-version: '3.13'
       - run: uv sync --locked --group docs
       - run: uv run sphinx-build -n -W --keep-going -b html docs docs/_build/html
       - run: uv run sphinx-build -n -W --keep-going -b doctest docs docs/_build/doctest
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7.0.2
         with:
           name: documentation
           path: docs/_build/html
           if-no-files-found: error
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5.0.0
         if: github.event_name != 'pull_request'
         with:
           path: docs/_build/html
@@ -40,5 +40,5 @@ jobs:
       group: github-pages
       cancel-in-progress: false
     steps:
-      - uses: actions/deploy-pages@v4
+      - uses: actions/deploy-pages@v5.0.1
         id: deployment
