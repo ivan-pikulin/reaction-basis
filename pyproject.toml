@@ -1,0 +1,41 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "reaction-basis"
+version = "0.1.0"
+description = "Exact chemical reaction balancing and independent reaction sets"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = ["sympy>=1.13,<2"]
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{name = "Ivan Pikulin"}]
+keywords = ["chemistry", "stoichiometry", "reaction-balancing", "linear-algebra"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Chemistry",
+]
+
+[project.urls]
+Documentation = "https://ivan-pikulin.github.io/reaction-basis/"
+Repository = "https://github.com/ivan-pikulin/reaction-basis"
+Issues = "https://github.com/ivan-pikulin/reaction-basis/issues"
+Changelog = "https://github.com/ivan-pikulin/reaction-basis/blob/main/CHANGELOG.md"
+
+[dependency-groups]
+dev = ["pytest>=8", "ruff>=0.9", "hypothesis>=6", "build>=1"]
+docs = ["sphinx>=8,<9", "sphinx-rtd-theme>=3,<4"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I", "B"]
